@@ -112,12 +112,7 @@ export default function App() {
               <div className="project-info">
                 <h2>Beauty Salon</h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officia voluptas dolores ipsum voluptatibus quos earum
-                  repellendus, nemo tempora quisquam culpa adipisci enim, vero
-                  exercitationem quod facilis a consequuntur, impedit
-                  accusantium?
-                </p>
+This project is made with several features, namely Login, Registration, Salon Customer Administration, and Salon Service.                </p>
                 <div className="list-use">
                   <span>C</span>
                   <span>Dekstop</span>
@@ -127,8 +122,8 @@ export default function App() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="project-btn"
-                >
-                  Lihat Project
+                >                 
+                  Open Link
                 </a>
               </div>
             </div>
@@ -137,12 +132,7 @@ export default function App() {
               <div className="project-info">
                 <h2>University Management Informasi System</h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officia voluptas dolores ipsum voluptatibus quos earum
-                  repellendus, nemo tempora quisquam culpa adipisci enim, vero
-                  exercitationem quod facilis a consequuntur, impedit
-                  accusantium?
-                </p>
+This project is created with several features, namely Login, Managing Information Systems for University Management (Admin).                </p>
                 <div className="list-use">
                   <span>React.js</span>
                   <span>Tailwind</span>
@@ -156,7 +146,7 @@ export default function App() {
                   rel="noopener noreferrer"
                   className="project-btn"
                 >
-                  Lihat Project
+                  Open Link
                 </a>
               </div>
             </div>
@@ -165,12 +155,7 @@ export default function App() {
               <div className="project-info">
                 <h2>Yummy Yums Corner</h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officia voluptas dolores ipsum voluptatibus quos earum
-                  repellendus, nemo tempora quisquam culpa adipisci enim, vero
-                  exercitationem quod facilis a consequuntur, impedit
-                  accusantium?
-                </p>
+This project is designed with several features: Searching for International Recipes by Ingredients, Viewing Recipes, and Watching Cooking Tutorials.      </p>
                 <div className="list-use">
                   <span>HTML</span>
                   <span>JavaScript</span>
@@ -182,7 +167,7 @@ export default function App() {
                   rel="noopener noreferrer"
                   className="project-btn"
                 >
-                  Lihat Project
+                  Open Link
                 </a>
               </div>
             </div>
@@ -191,12 +176,7 @@ export default function App() {
               <div className="project-info">
                 <h2>Payroll and PPH21 </h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officia voluptas dolores ipsum voluptatibus quos earum
-                  repellendus, nemo tempora quisquam culpa adipisci enim, vero
-                  exercitationem quod facilis a consequuntur, impedit
-                  accusantium?
-                </p>
+This project was created with several features, namely Login, Calculating PPH21 tax, Managing company employee administration and payroll.                </p>
                 <div className="list-use">
                   <span>Java</span>
                   <span>Springboot</span>
@@ -211,7 +191,7 @@ export default function App() {
                   rel="noopener noreferrer"
                   className="project-btn"
                 >
-                  Lihat Project
+                 Open Link
                 </a>
               </div>
             </div>
@@ -220,12 +200,7 @@ export default function App() {
               <div className="project-info">
                 <h2>Golden Sands Resort</h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officia voluptas dolores ipsum voluptatibus quos earum
-                  repellendus, nemo tempora quisquam culpa adipisci enim, vero
-                  exercitationem quod facilis a consequuntur, impedit
-                  accusantium?
-                </p>
+This project has 2 Roles (Admin User) created with several features, namely Login, Booking Hotel Rooms (User), Managing hotel administration (Admin).                </p>
                 <div className="list-use">
                   <span>React.js</span>
                   <span>Tailwind</span>
@@ -239,7 +214,7 @@ export default function App() {
                   rel="noopener noreferrer"
                   className="project-btn"
                 >
-                  Lihat Project
+                  Open Link
                 </a>
               </div>
             </div>
@@ -248,12 +223,7 @@ export default function App() {
               <div className="project-info">
                 <h2>Learn English</h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officia voluptas dolores ipsum voluptatibus quos earum
-                  repellendus, nemo tempora quisquam culpa adipisci enim, vero
-                  exercitationem quod facilis a consequuntur, impedit
-                  accusantium?
-                </p>
+This project has 2 roles (User and Admin) created with several features, namely Login, Registration, Creating English Quizzes (Admin), Reading Vocabulary, and Viewing English Quizzes (User).                </p>
                 <div className="list-use">
                   <span>HTML</span>
                   <span>CSS</span>
@@ -268,7 +238,7 @@ export default function App() {
                   rel="noopener noreferrer"
                   className="project-btn"
                 >
-                  Lihat Project
+                  Open Link
                 </a>
               </div>
             </div>
