@@ -1,427 +1,537 @@
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+:root {
+  /* Color Palette - Modern Dark Blue & Teal Accent */
+  --bg-primary: #0f172a;       /* Latar belakang utama (sangat gelap) */
+  --bg-secondary: #1e293b;     /* Latar belakang kartu/header */
+  --text-primary: #f1f5f9;     /* Warna teks utama (putih terang) */
+  --text-secondary: #94a3b8;   /* Warna teks deskripsi (abu-abu) */
+  --accent: #38bdf8;           /* Warna aksen (biru muda/teal) */
+  --accent-glow: rgba(56, 189, 248, 0.3);
+  --card-border: #334155;
+  
+  /* Spacing & Transition */
+  --container-width: 1200px;
+  --transition: all 0.3s ease;
+}
 
-
-/* Reset dasar */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-behavior: smooth;
 }
 
+html {
+  scroll-behavior: smooth; /* Agar scroll link menu halus */
+}
 
-/* Container utama */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================================
+   2. GLOBAL LAYOUT UTILITIES
+   ========================================= */
+/* Container utama aplikasi */
 .container {
-  font-family: 'Segoe UI', sans-serif;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Header dengan efek sticky + glassmorphism */
+/* Wrapper untuk konten agar tetap di tengah */
+.home-content, .tech-content, .project-content, .about-content, .contact-content {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+/* Judul Section Global */
+section h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--accent);
+  position: relative;
+  font-weight: 700;
+}
+
+/* Garis bawah pada judul section */
+section h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--accent);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* =========================================
+   3. HEADER / NAVBAR
+   ========================================= */
 .header {
   position: sticky;
   top: 0;
-  width: 100%;
-  backdrop-filter: blur(10px);
-  background: linear-gradient(to right, rgba(66, 48, 138, 0.6), rgba(110, 72, 170, 0.6));
   z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: rgba(15, 23, 42, 0.9); /* Transparan dikit */
+  backdrop-filter: blur(10px); /* Efek kaca buram (Glassmorphism) */
+  border-bottom: 1px solid var(--card-border);
+  padding: 1rem 0;
 }
 
-/* Navigasi */
 .nav {
+  max-width: var(--container-width);
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0 2rem;
 }
 
-/* Nama kamu */
 .profil h1 {
-  font-size: 2.2rem;
-  color: #ff0080;
-  background: linear-gradient(45deg, #ff0080, #7928ca);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 1px;
 }
 
-/* Link navigasi */
 .nav-links {
-  list-style: none;
   display: flex;
   gap: 2rem;
 }
 
 .nav-links a {
-  text-decoration: none;
-  color: rgb(247, 199, 235);
-  /* color: #333; */
   font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  transition: var(--transition);
   position: relative;
-  transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: #ff0080;
+  color: var(--accent);
 }
 
+/* Garis animasi saat hover menu */
 .nav-links a::after {
   content: '';
   position: absolute;
-  width: 0%;
+  width: 0;
   height: 2px;
-  background: #ff0080;
+  bottom: -5px;
   left: 0;
-  bottom: -4px;
-  transition: width 0.3s ease;
+  background-color: var(--accent);
+  transition: var(--transition);
 }
 
 .nav-links a:hover::after {
   width: 100%;
 }
 
-
-/* HOME SECTION */
+/* =========================================
+   4. HOME SECTION (HERO) - PERBAIKAN TATA LETAK
+   ========================================= */
 .home-container {
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  background: linear-gradient(to right, #1e1e3c, #2a1a40);
-  color: white;
-  text-align: center;
+  /* Background gradient halus */
+  background: radial-gradient(circle at center top, #1e293b 0%, var(--bg-primary) 70%);
 }
 
 .home-content {
+  /* MENGUBAH LAYOUT: Dari Grid ke Flex Column agar menumpuk di tengah */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  max-width: 800px;
+  align-items: center; /* Pusatkan secara horizontal */
+  justify-content: center; /* Pusatkan secara vertikal */
+  text-align: center; /* Agar semua teks di dalamnya rata tengah */
+  gap: 1rem; /* Jarak standar antar elemen */
 }
 
+/* Gambar Profil - Diperkecil */
 .home-content img {
-  width: 260px;       /* dari 180px → 220px */
-  height: 240px;
+  width: 220px; /* Ukuran lebih kecil (sebelumnya 300px) */
+  height: 220px;
   object-fit: cover;
   border-radius: 50%;
-  border: 4px solid #ffffff70;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  border: 3px solid var(--accent); /* Border sedikit lebih tipis */
+  box-shadow: 0 0 25px var(--accent-glow);
+  margin-bottom: 0.5rem; /* Jarak dekat ke tulisan nama */
+  transition: var(--transition);
 }
 
+.home-content img:hover {
+  transform: scale(1.05);
+}
+
+/* Teks Nama dengan GRADASI WARNA */
 .home-content h1 {
-  font-size: 2.9rem;
-  margin-bottom: 0.3rem;
-  color: #ff66c4;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0; /* Sangat dekat dengan tulisan jabatan di bawahnya */
+  
+  /* Magic Gradasi Warna */
+  background: linear-gradient(to right, var(--text-primary), var(--accent), var(--text-primary));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  
+  animation: gradientMove 3s ease infinite; /* Animasi agar gradasi bergerak pelan */
 }
 
+/* Definisi animasi gradasi */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Menghapus garis bawah pada H1 di home */
+.home-content h1::after { display: none; }
+
+/* Jabatan (Software Developer) */
 .home-content h3 {
-  font-size: 1.4rem;
-  color: #9effff;
-  margin-bottom: 1.2rem;
+  font-size: 1.5rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 1.5rem; /* Jarak ke paragraf */
+  letter-spacing: 1px;
 }
 
+/* Paragraf Deskripsi - Center */
 .home-content p {
+  color: var(--text-secondary);
   font-size: 1rem;
-  line-height: 1.8;
-  max-width: 700px;
-  margin: 0 auto;
-  color: #dddddd;
+  max-width: 700px; /* Membatasi lebar teks agar enak dibaca */
+  line-height: 1.7;
+  margin: 0 auto; /* Pastikan tetap di tengah */
 }
-/* project */
+
+/* =========================================
+   5. TECH SECTION 
+   ========================================= */
+
+/* Membungkus semua kategori */
+.skills-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 900px; /* Membatasi lebar agar rapi di tengah */
+  margin: 0 auto;
+}
+
+/* Judul per kategori (misal: Front End Skills) */
+.skill-category h3 {
+  font-size: 1.3rem;
+  color: var(--accent); /* Menggunakan warna biru aksen */
+  margin-bottom: 1rem;
+  text-align: left; /* Rata kiri agar seperti di CV */
+  border-bottom: 2px solid var(--card-border);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+/* Wadah untuk badge/pil keahlian */
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Desain Badge/Pil Keahlian */
+.skill-badge {
+  background-color: var(--bg-primary); /* Latar belakang gelap */
+  border: 1px solid var(--card-border);
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px; /* Membuat bentuk pil */
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: var(--transition);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Efek hover pada badge */
+.skill-badge:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  background-color: rgba(56, 189, 248, 0.05); /* Sedikit warna biru saat hover */
+}
+
+/* Ikon di dalam badge */
+.skill-badge i {
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 768px) {
+  .skill-category h3 {
+    display: block;
+    text-align: center; /* Judul kategori rata tengah di HP */
+  }
+  .skill-list {
+    justify-content: center; /* Badge rata tengah di HP */
+  }
+}
+/* =========================================
+   6. PROJECTS SECTION
+   ========================================= */
 .project-container {
-  min-height: 100vh;
-  background: linear-gradient(to right, #1e1e3c, #2a1a40);
-  color: white;
-  padding: 4rem 2rem;
-}
-
-.project-content {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.project-content h1 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: #9effff;
+  background-color: var(--bg-primary);
 }
 
 .project-list {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
 }
 
 .project-item {
+  background-color: var(--bg-secondary);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  transition: var(--transition);
   display: flex;
-  align-items: flex-start;
-  gap: 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+}
+
+.project-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
 }
 
 .project-item img {
-  width: 280px;
+  width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: var(--transition);
 }
 
 .project-info {
-  flex: 1;
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-info h2 {
-  font-size: 1.8rem;
-  color: #ff66c4;
+  font-size: 1.5rem;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .project-info p {
-  font-size: 1rem;
-  color: #ddd;
-  margin-bottom: 1rem;
-  line-height: 1.6;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  flex-grow: 1; /* Mendorong tombol ke bawah */
 }
 
+/* Tags teknologi (seperti React, CSS, dll) */
 .list-use {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .list-use span {
-  background: rgba(255, 0, 128, 0.15);
-  border: 1px solid #ff66c4;
-  color: #ff66c4;
-  padding: 0.5rem 1rem;         
-  margin: 0.25rem;             
-  border-radius: 10px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.3px;
+  background-color: rgba(56, 189, 248, 0.1);
+  color: var(--accent);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
+/* Tombol Project */
 .project-btn {
   display: inline-block;
-  background: #ff66c4;
-  color: white;
-  text-decoration: none;
-  padding: 0.6rem 1.2rem;
+  text-align: center;
+  padding: 0.8rem 1.5rem;
+  background-color: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
   border-radius: 8px;
   font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  margin-top: 0.5rem;
+  transition: var(--transition);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
 }
 
 .project-btn:hover {
-  background: #e056b0;
+  background-color: var(--accent);
+  color: var(--bg-primary);
 }
 
-
-/* contanct */
-.contact-container {
-  min-height: 60vh;
-  background: linear-gradient(to right, #2a1a40, #1e1e3c);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 2rem;
+/* =========================================
+   7. CERTIFICATES SECTION
+   ========================================= */
+.about-container {
+  background-color: var(--bg-secondary);
 }
 
-.contact-content {
+.certificate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.certificate-item {
+  background: var(--bg-primary);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: var(--transition);
+}
+
+.certificate-item:hover {
+  transform: scale(1.02);
+  border-color: var(--accent);
+}
+
+.certificate-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* Agar gambar tidak gepeng */
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.certificate-item p {
   text-align: center;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
 }
 
-.contact-content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #9effff;
+/* =========================================
+   8. CONTACT SECTION
+   ========================================= */
+.contact-container {
+  background-color: var(--bg-primary);
+  text-align: center;
+  padding-bottom: 6rem; /* Extra space sebelum footer */
 }
 
 .contact-icons {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  flex-wrap: wrap;
+  margin-top: 2rem;
 }
 
 .contact-icons a {
-  font-size: 2.2rem;
-  color: #ff66c4;
-  transition: transform 0.3s ease, color 0.3s ease;
+  width: 60px;
+  height: 60px;
+  background-color: var(--bg-secondary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  transition: var(--transition);
+  border: 1px solid var(--card-border);
 }
 
 .contact-icons a:hover {
-  color: #9effff;
-  transform: scale(1.2);
-}
-
-/* about */
-.about-container {
-  min-height: 80vh;
-  background: linear-gradient(to right, #2a1a40, #1e1e3c);
-  color: white;
-  padding: 3rem 1.5rem;
-  display: flex;
-  justify-content: center;
-}
-
-.about-content {
-  max-width: 1200px;
-  width: 100%;
-  text-align: center;
-}
-
-.about-content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #9effff;
-}
-
-/* Grid Sertifikat */
-.certificate-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1rem; /* Jarak antar item dikurangi */
-  justify-items: center;
-}
-
-.certificate-item {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(6px);
-  padding: 0.8rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s ease;
-}
-
-.certificate-item:hover {
-  transform: scale(1.02);
-}
-
-.certificate-item img {
-  width: 100%;
-  height: 240px; /* diperbesar */
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
-  margin-bottom: 0.6rem;
-}
-
-.certificate-item p {
-  font-size: 1rem;
-  color: #e0e0e0;
-  margin-top: 0.2rem;
-}
-
-/* TECH SECTION */
-.tech-container {
-  min-height: 60vh;
-  background: linear-gradient(to right, #1e1e3c, #2a1a40);
-  color: white;
-  padding: 4rem 2rem;
-  display: flex;
-  justify-content: center;
-}
-
-.tech-content {
-  max-width: 1100px;
-  text-align: center;
-  width: 100%;
-}
-
-.tech-content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 2.5rem;
-  color: #9effff;
-}
-
-.tech-icons {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1.5rem;
-  justify-items: center;
-}
-
-.tech-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(255,255,255,0.05);
-  padding: 1rem;
-  border-radius: 12px;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
-}
-
-.tech-item:hover {
+  background-color: var(--accent);
+  color: var(--bg-primary);
   transform: translateY(-5px);
+  box-shadow: 0 5px 15px var(--accent-glow);
 }
 
-.tech-item i, .tech-item img {
-  font-size: 3rem;
-  color: #ff66c4;
-  margin-bottom: 0.6rem;
-  width: 40px;
-  height: 40px;
-}
-
-.tech-item img {
-  object-fit: contain;
-  filter: invert(0.8);
-}
-
-.tech-item p {
-  font-size: 0.95rem;
-  color: #ddd;
-}
-
-/* footer */
-/* FOOTER */
+/* =========================================
+   9. FOOTER
+   ========================================= */
 .footer-container {
-  background: linear-gradient(to right, #1e1e3c, #2a1a40);
-  color: #ddd;
-  padding: 2rem 1.5rem;
+  background-color: #020617; /* Lebih gelap dari bg-primary */
+  padding: 2rem 0;
   text-align: center;
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.footer-content {
-  max-width: 900px;
-  margin: 0 auto;
+  border-top: 1px solid var(--card-border);
 }
 
 .footer-content p {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  color: #cccccc;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .footer-content a {
-  color: #ff66c4;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.footer-content a:hover {
-  color: #9effff;
+  color: var(--accent);
+  text-decoration: underline;
 }
 
 .footer-content .phone {
-  font-size: 1.1rem;
-  margin-top: 0.5rem;
   display: block;
-  color: #9effff;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* =========================================
+   10. RESPONSIVE DESIGN (MOBILE)
+   ========================================= */
+@media (max-width: 768px) {
+  /* Layout Global */
+  .home-content, .tech-content, .project-content, .about-content, .contact-content {
+    padding: 3rem 1.5rem;
+  }
+  
+  /* Header */
+  .nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  
+  .home-content h1 {
+    text-align: center;
+    font-size: 2.5rem;
+  }
+  
+  .home-content p {
+    margin: 0 auto;
+  }
+
+  /* Font Sizes */
+  section h1 {
+    font-size: 2rem;
+  }
 }
